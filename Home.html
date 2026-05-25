@@ -1,0 +1,541 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawar Sugarcane Nursery</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-green: #2e7d32;
+            --dark-green: #1b5e20;
+            --light-green: #e8f5e9;
+            --accent-gold: #fbc02d;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation Layout */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--primary-green);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo { font-size: 1.4rem; font-weight: bold; white-space: nowrap; }
+
+        nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+        nav ul li { margin-left: 25px; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--accent-gold); }
+
+        /* Mobile Responsive Drawer Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Hero Landing Base */
+        header {
+            height: 75vh;
+            min-height: 450px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://content.jdmagicbox.com/comp/kolhapur/k3/0231px231.x231.181220024729.a2k3/catalogue/shree-om-sugarcane-nursery-tamadalge-kolhapur-plant-nurseries-o89xv9sds2.jpg') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        header h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 1rem; margin-top: 0; line-height: 1.2; }
+        header p { font-size: clamp(1rem, 2.5vw, 1.25rem); max-width: 650px; margin-bottom: 2rem; color: #f0f0f0; }
+
+        .cta-btn {
+            background: var(--accent-gold);
+            color: #222;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover { transform: scale(1.05); background: #f9a825; }
+
+        /* Grid Architecture layout frameworks */
+        section { padding: 80px 10% 50px; scroll-margin-top: 60px; }
+        h2 { text-align: center; color: var(--primary-green); margin-bottom: 15px; font-size: clamp(1.75rem, 4vw, 2.25rem); line-height: 1.3; }
+        .section-subtitle { text-align: center; color: var(--text-light); margin-bottom: 40px; font-size: 1.05rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            background: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            padding: 30px 24px;
+            border-top: 4px solid var(--primary-green);
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .card h3 { color: var(--primary-green); margin-top: 12px; font-size: 1.35rem; }
+        .card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 0; }
+
+        #features { background-color: #fafafa; }
+        .feature-icon { font-size: 2.8rem; }
+
+        /* Process Steps Timeline Flow Layout */
+        .process-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .process-step {
+            display: flex;
+            background: var(--light-green);
+            padding: 24px;
+            border-radius: 12px;
+            align-items: center;
+            gap: 24px;
+        }
+        .step-number {
+            background: var(--primary-green);
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        .step-content h3 { margin: 0 0 6px 0; color: var(--dark-green); font-size: 1.2rem; }
+        .step-content p { margin: 0; color: #444; font-size: 0.95rem; }
+
+        /* Advisory Data Matrix */
+        #advisory { background-color: #fafafa; }
+        .table-responsive { overflow-x: auto; margin-top: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            white-space: normal;
+        }
+        th, td { padding: 16px 20px; text-align: left; font-size: 0.95rem; }
+        th { background-color: var(--primary-green); color: white; font-weight: 600; white-space: nowrap; }
+        tr { border-bottom: 1px solid #eee; }
+        tr:last-child { border-bottom: none; }
+        tr:nth-child(even) { background-color: #fdfdfd; }
+        .table-category { font-weight: bold; color: var(--dark-green); min-width: 160px; }
+
+        /* Gallery System Layout block */
+        #gallery-section { padding: 80px 10% 50px; background-color: var(--white); }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+        }
+        .gallery-card {
+            position: relative;
+            height: 240px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: #f0f0f0;
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-card:hover img { transform: scale(1.08); }
+
+        /* Location Info Box Panel Layout */
+        .location-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 32px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--primary-green);
+        }
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .location-info-block {
+            display: flex;
+            flex-direction: column;
+        }
+        .location-info-block h3 {
+            color: var(--dark-green);
+            margin: 0 0 6px 0;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .location-info-block p {
+            margin: 0;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .location-info-block a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Form Controls Wrapper Block */
+        #contact { background: var(--light-green); }
+        form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+        input, textarea { padding: 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; font-family: inherit; box-sizing: border-box; width: 100%; }
+        input:focus, textarea:focus { border-color: var(--primary-green); outline: none; box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15); }
+        
+        .submit-btn {
+            background: var(--primary-green);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: bold;
+            transition: background 0.2s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        .submit-btn:hover { background: var(--dark-green); }
+        .submit-btn:disabled { background-color: #a5d6a7; cursor: not-allowed; }
+
+        /* Responsive Mobile Layout Adaptations */
+        @media (max-width: 992px) {
+            section { padding: 70px 5% 40px; }
+            #gallery-section { padding: 70px 5% 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            nav { padding: 0.8rem 5%; }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-green);
+                padding: 10px 0 20px 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            nav ul.active { display: flex; }
+            nav ul li { margin: 0; text-align: center; }
+            nav ul li a { display: block; padding: 12px 0; width: 100%; font-size: 1.1rem; }
+            nav ul li a:hover { background-color: rgba(0,0,0,0.05); }
+            
+            .process-step { flex-direction: column; text-align: center; padding: 24px 16px; gap: 16px; }
+            .location-wrapper { padding: 24px 16px; margin: 0 8px; }
+            
+            table th, table td { padding: 12px 14px; font-size: 0.9rem; }
+            .table-category { min-width: 120px; }
+        }
+        
+        /* Footer Copyright Block */
+        footer { background: #1a1a1a; color: #999; text-align: center; padding: 30px 20px; font-size: 0.9rem; border-top: 1px solid #222; }
+        footer p { margin: 0; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Pawar Nursery</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Benefits</a></li>
+            <li><a href="#varieties">Varieties</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#gallery-section">Gallery</a></li>
+            <li><a href="#advisory">Advisory</a></li>
+            <li><a href="#location">Our Location</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <h1>Sustainable Sugarcane Farming</h1>
+        <p>Providing high-yield, disease-resistant sugarcane saplings raised scientifically for farmers nationwide.</p>
+        <button class="cta-btn" onclick="scrollToContact()">Order Saplings Now</button>
+    </header>
+
+    <section id="features">
+        <h2>Why Choose Pre-Grown Saplings?</h2>
+        <div class="section-subtitle">Upgrade from traditional cane cuttings to modern, high-return sugarcane farming</div>
+        <div class="grid">
+            <div class="card">
+                <div class="feature-icon">🌱</div>
+                <h3>99% Germination Guarantee</h3>
+                <p>Traditional field sets often rot or fail. Our pre-rooted healthy nursery saplings ensure uniform field growth with zero missing gaps.</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon">⏱️</div>
+                <h3>Saves 25-30 Days Field Time</h3>
+                <p>Since saplings are already 30 days mature upon delivery, you reduce field preparation efforts, early weeding costs, and water usage cycles.</p>
+            </div>
+            <div class="card">
+                <div class="feature-icon">🚜</div>
+                <h3>Massive Yield Increase</h3>
+                <p>Scientifically bred single-bud sets produce vigorous tillering, thicker cane girth, and up to a 20-30% boost in overall tonnage per acre.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="varieties">
+        <h2>Premium Sapling Varieties</h2>
+        <div class="section-subtitle">We grow high-recovery varieties highly recommended by sugar mills</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Co 86032</h3>
+                <p>The golden standard variety. Renowned for high drought tolerance, excellent ratoon crop yield, and consistently great sugar recovery rates.</p>
+            </div>
+            <div class="card">
+                <h3>Co 10001</h3>
+                <p>An exceptional early-maturing variety highly regarded for its impressive cane thickness, erect growth habit, and early high sugar accumulation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <h2>Our Scientific Growth Process</h2>
+        <div class="section-subtitle">How we carefully nurture disease-free and vigorous saplings for your fields</div>
+        <div class="process-container">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Bud Selection & Heat Treatment</h3>
+                    <p>We source clean mother canes to extract healthy single buds. The buds undergo specific organic treatments to safeguard against seed-borne pests and fungal diseases.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Enriched Media Trays</h3>
+                    <p>Buds are embedded carefully into premium coco-peat inside pro-trays, enriched with bio-fertilizers like Trichoderma and Azotobacter to promote expansive initial root architecture.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Automated Greenhouse Misting</h3>
+                    <p>For the first 25 days, saplings live inside a climate-controlled greenhouse receiving precise humidity and shade nourishment away from harsh elements.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Field Hardening & Dispatch</h3>
+                    <p>Before leaving the nursery, the plants spend 10 days in open-sun hardening bays so they safely handle field transplantation shock without wilting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery-section">
+        <h2>Nursery Gallery</h2>
+        <div class="section-subtitle">A glimpse into our infrastructure and ready-to-plant stocks</div>
+        <div class="gallery-container">
+            <div class="gallery-card"><img src="2.jpeg" alt="Nursery Rows"></div>
+            <div class="gallery-card"><img src="images1.jpeg" alt="Quality Saplings"></div>
+            <div class="gallery-card"><img src="1.jpeg" alt="Modern Greenhouse"></div>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-card"><img src="3.jpeg" alt="Nursery Rows"></div>
+            <div class="gallery-card"><img src="4.jpeg" alt="Quality Saplings"></div>
+            <div class="gallery-card"><img src="5.jpeg" alt="Modern Greenhouse"></div>
+        </div>
+    </section>
+
+    <section id="advisory">
+        <h2>Plantation Advisory & Best Practices</h2>
+        <div class="section-subtitle">Follow these agronomic parameters to maximize output when using our saplings</div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Management Parameter</th>
+                        <th>Recommended Guidelines for Saplings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-category">Row Spacing</td>
+                        <td>Maintain a wider furrow distance of 4 to 5 feet. This permits abundant solar radiation for optimal tillering and allows light mini-tractor mechanical weeding.</td>
+                    </tr>
+                    <tr>
+                        <td class="table-category">Plant to Plant Distance</td>
+                        <td>Space individual saplings 1.25 to 1.5 feet apart inside the furrow line. This minimizes canopy crowding and preserves heavy cane weight.</td>
+                    </tr>
+                    <tr>
+                        <td class="table-category">Basal Nutrition</td>
+                        <td>Apply well-decomposed farmyard manure (FYM) or compost combined with Single Super Phosphate (SSP) directly in furrows prior to setting the saplings.</td>
+                    </tr>
+                    <tr>
+                        <td class="table-category">Irrigation Trick</td>
+                        <td>Lightly irrigate your farm furrows <strong>immediately before</strong> and <strong>right after</strong> transplanting to establish quick root-to-soil contact.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="location">
+        <h2>Visit Our Nursery</h2>
+        <div class="section-subtitle">Drop by our facility to look at our infrastructure and select ready stocks</div>
+        <div class="location-wrapper">
+            <div class="location-details">
+                <div class="location-info-block">
+                    <h3>📍 Address</h3>
+                    <p>Pawar Sugarcane Nursery,<br>A/P Palashi Tal. Khatav Dis. Satara,<br>Maharashtra, India - 415512</p>
+                </div>
+                <div class="location-info-block">
+                    <h3>📞 Contact Details</h3>
+                    <p><strong>Phone:</strong> +91 9922417682</p>
+                </div>
+                <div class="location-info-block">
+                    <h3>⏰ Business Hours</h3>
+                    <p>Monday - Sunday: 8:00 AM - 6:00 PM<br>Open all year round for sapling bookings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Our Nursery</h2>
+        <div class="section-subtitle">Drop us a line to check sapling booking availability for your planting season</div>
+        <form id="nurseryForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="1e7ef981-44ac-4760-812a-99acbe330684">
+            <input type="checkbox" name="botcheck" style="display: none;">
+            <input type="text" id="name" name="Farmer Name" placeholder="Full Name" required>
+            <input type="email" id="email" name="Email Address" placeholder="Email Address" required>
+            <input type="tel" id="phone" name="Phone Number" placeholder="Phone Number" required>
+            <textarea id="message" name="Inquiry Details" rows="5" placeholder="enter enquiry" required></textarea>
+            <button type="submit" class="submit-btn">Send Inquiry</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Pawar Sugarcane Nursery. All Rights Reserved. | Empowering Farmers with Quality Seeds.</p>
+    </footer>
+
+    <script>
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Mobile responsive navigation system
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Auto-close menu drawer when clicking item on smartphones
+        document.querySelectorAll('#nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form handling with Web3Forms
+        const form = document.getElementById('nurseryForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending Inquiry to Admin...";
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`Thank you for reaching out to Pawar Sugarcane Nursery! Your inquiry has been sent to the admin. We will review our cultivation schedules and call you shortly.`);
+                    form.reset();
+                } else {
+                    alert("Oops! There was a problem submitting your form. Please check if your Access Key configuration is active.");
+                }
+            })
+            .catch(error => {
+                alert("Connection error. Please check your internet connection and try again.");
+            })
+            .finally(() => {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
